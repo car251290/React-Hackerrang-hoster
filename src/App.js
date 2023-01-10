@@ -1,24 +1,48 @@
-import React, {useState} from 'react';
-import Bookings from './components/Bookings';
-import Meals from './components/Meals';
-import Error from './components/Error';
+import React,{useEffect, useState}from 'react'
+import './App.css';
 
 
-const App = ({handleButtonClicked,handleInputChange,invalidHackers}) => {
+
+
+const App = () => {
+  const [Count,setCount] = useState(0);
+  const [StartCount,setStartCount] = useState(false);
+  const [TimeCheck,setTimeChack] = useState(0);
+
+  useEffect(() => {
+    let inicialition = null;
+
+    if(StartCount){
+      inicialition = setInterval(()=> {
+        setCount((prevStart)=> prevStart += 1)
+
+
+      },1000) 
+      setTimeChack(inicialition)
       
-        return (
-            
-            <div className="container-fluid">
-            <center>
-                <h2>Hacker Hostel</h2>
-            </center>
-            <div className="container">
-                <Bookings handleInputChange={handleInputChange} handleButtonClicked={handleButtonClicked}></Bookings>
-                <Error invalidHackers={invalidHackers}></Error>
-                <Meals></Meals>
-            </div>
-        </div>
-        )
+    } else if (!StartCount && Count !== 0) {
+      clearInterval(TimeCheck);
+      
+    }
+    return () => clearInterval(TimeCheck);
+  },[StartCount])
+
+
+  const handlerStartButton = () => {
+    setStartCount(true);
+  }
+  const handlerStopButton = () => {
+    setStartCount(false);
+  }
+
+  return (
+    <>
+  <h1>{Count}</h1>
+    <button onClick={handlerStartButton}>Start</button>
+    <button onClick={handlerStopButton}>Stop</button>
+  
+    </>
+  )
 }
 
 export default App;
