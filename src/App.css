@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+
+}
+.ButtonStart {
+  background-color: green;
+  height:50px;
+  width: 50px;
+  font-size:1em;
+  border-radius: 50px;
+  margin: 0px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.ButtonStop {
+  background-color: red;
+ 
+  height:50px;
+  width: 50px;
+  font-size:1em;
+  border-radius: 50px;
+  margin: 0px 10px;
+  border: none;
+  cursor: pointer;
+
+}
+.ButtonReset {
+  background-color: blue;
+
+  height:50px;
+  width: 50px;
+  font-size:1em;
+  border-radius: 50px;
+  margin: 0px 10px;
+  border: none;
+  cursor: pointer;
+}
+.App-link {
+  color: #61dafb;
+}
+
