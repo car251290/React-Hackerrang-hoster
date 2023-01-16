@@ -1,4 +1,4 @@
-import React,{useEffect, useState}from 'react'
+import React,{useEffect, useState,useRef}from 'react'
 import './App.css';
 
 
@@ -7,18 +7,20 @@ import './App.css';
 const App = () => {
   const [Count,setCount] = useState(0);
   const [StartCount,setStartCount] = useState(false);
-  const [TimeCheck,setTimeChack] = useState(0);
+  const [TimeCheck,setTimeCheck] = useState(0);
+
+ const formRef = useRef(0);
 
   useEffect(() => {
-    let inicialition = null;
+    let initialization = null;
 
     if(StartCount){
-      inicialition = setInterval(()=> {
-        setCount((prevStart)=> prevStart += 1)
+      initialization = setInterval(()=> {
+        setCount((prevStart) => prevStart += 1)
 
 
       },1000) 
-      setTimeChack(inicialition)
+      setTimeCheck(initialization)
       
     } else if (!StartCount && Count !== 0) {
       clearInterval(TimeCheck);
@@ -34,12 +36,16 @@ const App = () => {
   const handlerStopButton = () => {
     setStartCount(false);
   }
+  const handlerresetButton = () => {
+      formRef.current.value = setCount(0)
+  }
 
   return (
     <>
   <h1>{Count}</h1>
-    <button onClick={handlerStartButton}>Start</button>
-    <button onClick={handlerStopButton}>Stop</button>
+    <button className='ButtonStart' onClick={handlerStartButton}>Start</button>
+    <button className='ButtonStop' onClick={handlerStopButton}>Stop</button>
+   <button className='ButtonReset' onClick={handlerresetButton}>Reset</button>
   
     </>
   )
